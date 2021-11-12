@@ -1,0 +1,51 @@
+<html>
+  Input : [12, 9, 30, "A", "M", 99, 82, "J", "N", "B"]
+  <div id="result"></div>
+</html>
+<script>
+  var arr = [12, 9, 30, "A", "M", 99, 82, "J", "N", "B"];
+
+  var abjad = [];
+  var angka = [];
+  for (let x = 0; x < arr.length; x++) {
+    if (isNaN(arr[x])) {
+      abjad.push(arr[x]);
+    } else {
+      angka.push(arr[x]);
+    }
+  }
+  for (let x = 0; x < abjad.length; x++) {
+    for (let y = 0; y < abjad.length; y++) {
+      if (abjad[y] > abjad[y + 1]) {
+        let tmp = abjad[y];
+        abjad[y] = abjad[y + 1];
+        abjad[y + 1] = tmp;
+      }
+    }
+  }
+  for (let x = 0; x < angka.length; x++) {
+    for (let y = 0; y < angka.length; y++) {
+      if (angka[y] > angka[y + 1]) {
+        let tmp = angka[y];
+        angka[y] = angka[y + 1];
+        angka[y + 1] = tmp;
+      }
+    }
+  }
+
+  let arrhasil = [];
+  for (let x = 0; x < abjad.length; x++) {
+    arrhasil.push('"' + abjad[x] + '"');
+  }
+  for (let x = 0; x < angka.length; x++) {
+    arrhasil.push(angka[x]);
+  }
+  document.getElementById("result").innerHTML = "Output : [";
+  for (x = 0; x < arrhasil.length; x++) {
+    document.getElementById("result").innerHTML += arrhasil[x];
+    if (x + 1 != arrhasil.length) {
+      document.getElementById("result").innerHTML += ", ";
+    }
+  }
+  document.getElementById("result").innerHTML += "]";
+</script>

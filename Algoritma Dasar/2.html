@@ -1,0 +1,32 @@
+<html>
+  <input type="text" id="teks" placeholder="teks..." /><br />
+  <input type="text" id="pattern" placeholder="pattern..." /><br />
+  <button id="submit">CARI</button>
+  <div id="result"></div>
+</html>
+<script>
+  document.getElementById("submit").onclick = function () {
+    var teks = document.getElementById("teks").value;
+    var pattern = document.getElementById("pattern").value;
+
+    document.getElementById("result").innerHTML =
+      "Output : " + pattern_count(teks, pattern);
+  };
+  function pattern_count(teks, pattern) {
+    let counter = 0;
+    for (let x = 0; x < teks.length; x++) {
+      if (teks[x] == pattern[0]) {
+        for (let y = 0; y < pattern.length; y++) {
+          if (teks[x + y] == pattern[y]) {
+            if (y + 1 == pattern.length) {
+              counter++;
+            }
+          } else {
+            break;
+          }
+        }
+      }
+    }
+    return counter;
+  }
+</script>

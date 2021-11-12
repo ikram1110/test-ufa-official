@@ -1,0 +1,63 @@
+<html>
+  <input type="text" id="teks" placeholder="input..." /><br />
+  <button id="submit">CARI</button>
+  <div id="result"></div>
+</html>
+<script>
+  document.getElementById("submit").onclick = function () {
+    var teks = document.getElementById("teks").value;
+
+    let result = letter_count(teks);
+    document.getElementById("result").innerHTML = "Output : [";
+    for (let y = 0; y < result.length; y++) {
+      document.getElementById("result").innerHTML +=
+        '"' + result[y][2] + '":' + result[y][3];
+      if (y + 1 != result.length) {
+        document.getElementById("result").innerHTML += ", ";
+      }
+    }
+    document.getElementById("result").innerHTML += "]";
+  };
+
+  function letter_count(teks) {
+    let counter = [];
+    for (let x = 0; x < teks.length; x++) {
+      if (teks[x] == " ") {
+        continue;
+      }
+      let found = 0;
+      for (let y = 0; y < counter.length; y++) {
+        if (teks[x] == counter[y][2]) {
+          found = 1;
+          counter[y][3]++;
+        }
+      }
+      if (found == 0) {
+        let arr = [];
+        let tmp = teks[x];
+        let ascii = teks[x].charCodeAt(0);
+        arr.push(tmp.toLowerCase());
+        if (ascii >= 97) {
+          arr.push("kecil");
+        } else {
+          arr.push("besar");
+        }
+        arr.push(teks[x]);
+        arr.push(1);
+        counter.push(arr);
+      }
+    }
+
+    for (let x = 0; x < counter.length; x++) {
+      for (let y = 0; y < counter.length; y++) {
+        if (counter[y] > counter[y + 1]) {
+          let tmp = counter[y];
+          counter[y] = counter[y + 1];
+          counter[y + 1] = tmp;
+        }
+      }
+    }
+
+    return counter;
+  }
+</script>
