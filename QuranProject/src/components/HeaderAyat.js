@@ -1,13 +1,18 @@
 import React from 'react';
-import {Text, StyleSheet, View} from 'react-native';
+import {Text, StyleSheet, ImageBackground} from 'react-native';
+import bg1 from '../../assets/images/bg1.png';
 
 const HeaderAyat = ({name, number}) => {
   return (
-    <View style={styles.wrapper}>
+    <ImageBackground
+      source={bg1}
+      resizeMode="cover"
+      imageStyle={{borderRadius: 20}}
+      style={styles.wrapper}>
       <Text style={styles.title}>
         {name} {number}
       </Text>
-    </View>
+    </ImageBackground>
   );
 };
 

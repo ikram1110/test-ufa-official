@@ -60,7 +60,15 @@ const Ayat = props => {
                       style={
                         ayat.edition.language == 'ar' ? styles.ar : styles.id
                       }>
-                      {ayat.text}
+                      {ayat.numberInSurah == 1
+                        ? ayat.text.replace(
+                            ayat.text.slice(
+                              '\u0628\u0650\u0633\u0652\u0645\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0627\u0644\u0631\u0651\u064e\u062d\u0652\u0645\u064e\u0670\u0646\u0650 \u0627\u0644\u0631\u0651\u064e\u062d\u0650\u064a\u0645\u0650 ',
+                              39,
+                            ),
+                            '',
+                          )
+                        : ayat.text}
                     </Text>
                   )}
                 </View>

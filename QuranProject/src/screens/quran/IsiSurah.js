@@ -6,10 +6,12 @@ import {
   TouchableOpacity,
   View,
   ActivityIndicator,
+  Image,
 } from 'react-native';
 import HeaderSurah from '../../components/HeaderSurah';
 import Header from '../../components/Header';
 import ListAyat from '../../components/ListAyat';
+import bismillah from '../../../assets/images/bismillah.png';
 
 const IsiSurah = props => {
   const [dataIsiSurah, setDataIsiSurah] = useState([]);
@@ -40,6 +42,13 @@ const IsiSurah = props => {
             revelation={dataIsiSurah.revelationType}
             ayahs={dataIsiSurah.numberOfAyahs}
           />
+          {dataIsiSurah.number != 1 ? (
+            <View style={styles.wrapBismillah}>
+              <Image source={bismillah} style={styles.bismillahLogo} />
+            </View>
+          ) : (
+            <></>
+          )}
           <ScrollView>
             {ayahs.map(ayah => {
               return (
@@ -51,7 +60,7 @@ const IsiSurah = props => {
                       number: dataIsiSurah.number + ':' + ayah.numberInSurah,
                     })
                   }>
-                  <ListAyat item={ayah} />
+                  <ListAyat item={ayah} numbersurah={dataIsiSurah.number} />
                 </TouchableOpacity>
               );
             })}
@@ -69,5 +78,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+  },
+  wrapBismillah: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: 10,
+  },
+  bismillahLogo: {
+    width: 163,
+    height: 50,
   },
 });

@@ -1,15 +1,20 @@
 import React from 'react';
-import {Text, StyleSheet, View} from 'react-native';
+import {Text, StyleSheet, ImageBackground} from 'react-native';
+import bg1 from '../../assets/images/bg1.png';
 
 const HeaderSurah = ({name, translation, revelation, ayahs}) => {
   return (
-    <View style={styles.wrapper}>
+    <ImageBackground
+      source={bg1}
+      resizeMode="cover"
+      imageStyle={{borderRadius: 20}}
+      style={styles.wrapper}>
       <Text style={styles.title}>{name}</Text>
       <Text style={styles.subtitle}>{translation}</Text>
       <Text style={styles.subsubtitle}>
         {revelation == 'Meccan' ? 'Makkiyah' : 'Madaniyah'} - {ayahs} ayat
       </Text>
-    </View>
+    </ImageBackground>
   );
 };
 
@@ -17,7 +22,6 @@ export default HeaderSurah;
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: '#64B686',
     borderRadius: 20,
     padding: 20,
     marginHorizontal: 20,

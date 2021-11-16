@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Image, Text, StyleSheet} from 'react-native';
 import number from '../../assets/images/number.png';
 
-const ListAyat = ({item}) => {
+const ListAyat = ({item, numbersurah}) => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.wrapNumber}>
@@ -10,7 +10,17 @@ const ListAyat = ({item}) => {
         <Text style={styles.txtNumber}>{item.numberInSurah}</Text>
       </View>
       <View style={styles.wrapTitle}>
-        <Text style={styles.title}>{item.text}</Text>
+        <Text style={styles.title}>
+          {numbersurah != 1 && item.numberInSurah == 1
+            ? item.text.replace(
+                item.text.slice(
+                  '\u0628\u0650\u0633\u0652\u0645\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0627\u0644\u0631\u0651\u064e\u062d\u0652\u0645\u064e\u0670\u0646\u0650 \u0627\u0644\u0631\u0651\u064e\u062d\u0650\u064a\u0645\u0650 ',
+                  39,
+                ),
+                '',
+              )
+            : item.text}
+        </Text>
       </View>
     </View>
   );
